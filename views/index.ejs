@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error Monitoring Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff6347;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #555;
+        }
+        th {
+            background-color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #222;
+        }
+        tr:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Error Monitoring Dashboard</h1>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Error</th>
+            <th>Timestamp</th>
+        </tr>
+        <% errors.forEach((item, index) => { %>
+            <tr>
+                <td><%= index + 1 %></td>
+                <td><%= item.error %></td>
+                <td><%= item.timestamp %></td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
