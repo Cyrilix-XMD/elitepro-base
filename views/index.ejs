@@ -4,14 +4,23 @@
     <title>Error Monitoring Dashboard</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e;
             color: white;
             margin: 0;
             padding: 20px;
         }
+        header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
         h1 {
             color: #ff6347;
+            margin: 0;
+        }
+        p {
+            margin: 5px 0;
+            color: #ccc;
         }
         table {
             width: 100%;
@@ -20,34 +29,53 @@
         }
         th, td {
             padding: 12px;
-            border: 1px solid #555;
+            border: 1px solid #333;
+            text-align: left;
         }
         th {
-            background-color: #333;
-        }
-        tr:nth-child(even) {
-            background-color: #222;
-        }
-        tr:hover {
             background-color: #444;
         }
+        tr:nth-child(even) {
+            background-color: #2a2a2a;
+        }
+        tr:hover {
+            background-color: #333;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #666;
+        }
     </style>
+    <script>
+        // Auto-refresh the page every 10 seconds
+        setInterval(() => {
+            location.reload();
+        }, 10000);
+    </script>
 </head>
 <body>
-    <h1>Error Monitoring Dashboard</h1>
+    <header>
+        <h1>Error Monitoring Dashboard</h1>
+        <p>Total Errors: <%= errors.length %></p>
+        <p>Last Updated: <%= new Date().toLocaleString() %></p>
+    </header>
     <table>
         <tr>
             <th>#</th>
             <th>Error</th>
             <th>Timestamp</th>
         </tr>
-        <% errors.forEach((item, index) => { %>
+        <% errors.slice().reverse().forEach((item, index) => { %>
             <tr>
-                <td><%= index + 1 %></td>
+                <td><%= errors.length - index %></td>
                 <td><%= item.error %></td>
-                <td><%= item.timestamp %></td>
+                <td><%= new Date(item.timestamp).toLocaleString() %></td>
             </tr>
         <% }) %>
     </table>
+    <footer>
+        <p>&copy; 2025 EliteProEmpire - Monitoring Dashboard</p>
+    </footer>
 </body>
 </html>
